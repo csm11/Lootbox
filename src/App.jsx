@@ -7,6 +7,7 @@ import Pokemoncard from './Components/Pokemoncard';
 import BaseSet from './assets/base_set.jpg';
 import SilverTempest from './assets/SilverTempest.jpeg';
 import './style.css';
+import { useState, useEffect } from 'react';
 
 function App() {
 return (
