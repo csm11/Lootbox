@@ -3,11 +3,14 @@ import Navbar from './Navbar';
 import Game from "./pages/Game"
 import Instruction from "./pages/Instructions"
 import Survey from "./pages/Survey"
+import Pokemoncard from './Components/Pokemoncard';
+import BaseSet from './assets/base_set.jpg';
+import SilverTempest from './assets/SilverTempest.jpeg';
+import './style.css';
 
 function App() {
 return (
 <>
-
 <Navbar />
 <div className="container">
   <Routes>
