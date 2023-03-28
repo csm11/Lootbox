@@ -1,17 +1,24 @@
 import { Link, NavLink } from "react-router-dom";
 import React from 'react';
+import { useState, useEffect } from 'react';
+import Pokemoncard from '../Components/Pokemoncard';
+import BaseSet from '../assets/base_set.jpg';
+import SilverTempest from '../assets/SilverTempest.jpeg';
+import { useNavigate } from 'react-router-dom';
 
 
-function App() {
+
+
+function Game() {
   const [pokemonCards, setPokemonCards] = useState([]);
   const [clickedCard, setClickedCard] = useState(null);
   const [showImage, setShowImage] = useState(true);
   const [showButton, setShowButton] = useState(false);
   const [showPacks, setShowPacks] = useState(true);
-  const [timeLeft, setTimeLeft] = useState(30);
-const [timeEnded, setTimeEnded] = useState(false)
-const [isShaking, setIsShaking] = useState(true);
-
+  const [timeLeft, setTimeLeft] = useState(45);
+  const [timeEnded, setTimeEnded] = useState(false)
+  const [isShaking, setIsShaking] = useState(true);
+  const navigate = useNavigate();
   const [points, setPoints] = useState(50); // Initialize points to 50
   const URL_BASE_SET = "https://api.pokemontcg.io/v2/cards/base1-"; //base pack
   const URL_SILVER_TEMPEST = "https://api.pokemontcg.io/v2/cards/swsh12-"; //silver tempest pack
@@ -36,12 +43,7 @@ const [isShaking, setIsShaking] = useState(true);
   
     return () => clearInterval(intervalId);
   }, []);
-  
-  document.addEventListener("mousemove", function(event) {
-    document.documentElement.style.setProperty('--mouse-x', event.clientX + "px");
-    document.documentElement.style.setProperty('--mouse-y', event.clientY + "px");
-  });
-  console.log(MouseEvent)
+
   
   const getCardPrice = (card) => {
     if (!card) {
@@ -129,13 +131,17 @@ const shakeAnimation = "shake 0.5s ease-in-out";
     }, 1000); // Update points every second
     return () => clearInterval(intervalId); // Cleanup function to clear interval
   }, []);
-
-
+  
   useEffect(() => {
     if (timeLeft === 0) {
-      window.location.href = 'survey.html';
+      navigate('/Survey');
+    } else {
+      const timerId = setTimeout(() => {
+        setTimeLeft(timeLeft - 1);
+      }, 1000);
+      return () => clearTimeout(timerId);
     }
-  }, [timeLeft]);
+  }, [timeLeft, navigate]);
   
   return ( 
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2%' }}>
@@ -160,7 +166,7 @@ const shakeAnimation = "shake 0.5s ease-in-out";
           )}
           
           <div className="card-container">
-          <div class="pokemon-card"></div>
+          <div className="pokemon-card"></div>
             {pokemonCards.map((card, i) => (
               card && (
                 <Pokemoncard
