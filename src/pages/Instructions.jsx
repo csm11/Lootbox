@@ -14,6 +14,9 @@ function Instructions() {
         <li>The right pack will give you a lower chance of getting high value cards but less points will be needed to open it</li>
         <li>Once you press the play button, the timer will start</li>
         <li>Once the timer ends you will be redirected to the Google Survey</li>
+        <br />
+        <li>Troubleshooting</li>
+        <li>If when a pack is clicked on and the page turns white. Please keep refreshing</li>
       </ul>
       <Link to="/Game" className="play-button">
   Play Game

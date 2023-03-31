@@ -47,29 +47,29 @@ function Game() {
   
   const getCardPrice = (card) => {
     if (!card) {
-      return 0; // return 0 if card is undefined
+      return 0;
     }
-
-  //gets the card price from the api data
-    let cardPrice;
+  
+    let cardPrice = 0;
     if (card.tcgplayer && card.tcgplayer.prices) {
-      cardPrice =
-        card.tcgplayer.prices.normal !== undefined //checking if value is not defined
-          ? card.tcgplayer.prices.normal.market
-          : card.tcgplayer.prices['1stEditionHolofoil'] !== undefined
-          ? card.tcgplayer.prices['1stEditionHolofoil'].market
-          : card.tcgplayer.prices.holofoil.market;
-    } else {
-      cardPrice = 0; // set card price to 0 if prices are not available
+      if (card.tcgplayer.prices.normal && card.tcgplayer.prices.normal.market) {
+        cardPrice = card.tcgplayer.prices.normal.market;
+      } else if (card.tcgplayer.prices['1stEditionHolofoil'] && card.tcgplayer.prices['1stEditionHolofoil'].market) {
+        cardPrice = card.tcgplayer.prices['1stEditionHolofoil'].market;
+      } else if (card.tcgplayer.prices.holofoil && card.tcgplayer.prices.holofoil.market) {
+        cardPrice = card.tcgplayer.prices.holofoil.market;
+      }
     }
+    
     return cardPrice;
   };
 const fetchPokemon = (packUrl) => {
   const availableCards = Array.from(Array(102).keys())
-    //.filter(cardNumber => cardNumber !== 50 && cardNumber !== 72);
+  .filter(cardNumber => cardNumber !== 31 && cardNumber !== 7 && cardNumber !== 0 && cardNumber !== 81 && cardNumber !== 19 && cardNumber !== 63 && cardNumber !== 92);
+
 
   const pokemon = [];
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 11; i++) {
     const randomIndex = Math.floor(Math.random() * availableCards.length);
     const cardNumber = availableCards[randomIndex];
     availableCards.splice(randomIndex, 1);

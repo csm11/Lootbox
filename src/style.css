@@ -223,7 +223,6 @@ nav a:hover {
 
 .card {
   position: relative;
-  transform-style: preserve-3d;
   padding: 3em;
   display: grid;
   grid-template-rows: (4, 1fr);
@@ -231,10 +230,11 @@ nav a:hover {
   align-items: center;
   transform: translateZ(0);
   margin: 1%;
+  overflow: hidden;
 }
 
 .card:hover {
-  transform: rotateX(calc(0deg + ((100vh - var(--mouse-y)) * 0.1))) rotateY(calc(0deg + ((100vw - var(--mouse-x)) * 0.1)));
+  transform: rotateX(calc(0deg + ((100vh - var(--mouse-y)) * 0.05))) rotateY(calc(0deg + ((100vw - var(--mouse-x)) * 0.05)));
   animation-name: flip;
   animation-duration: 1s;
   animation-fill-mode: forwards;
@@ -242,8 +242,8 @@ nav a:hover {
   box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #00e6e6, 0 0 70px #00e6e6, 0 0 80px #00e6e6, 0 0 100px #00e6e6, 0 0 150px #00e6e6;
 }
 
+
 .card:hover::before {
-  /* Add the shiny glide styles here */
   content: '';
   position: absolute;
   top: -50%;
@@ -254,13 +254,12 @@ nav a:hover {
   transform: rotate(-45deg);
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
-}
-
-.card:hover::before {
   /* Add the animation for the shiny glide effect here */
   opacity: 1;
   animation: shiny-glide 1s linear infinite;
 }
+
+
 
 @keyframes shiny-glide {
   0% {
@@ -273,11 +272,6 @@ nav a:hover {
   }
 }
 
-@keyframes shine {
-  to {
-    background-position: 200%;
-  }
-}
 
 /* Define the keyframes for the animation */
 @keyframes flip {
