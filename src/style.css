@@ -221,46 +221,28 @@ nav a:hover {
 }
 
 
-
-.card:hover {
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  background-image: linear-gradient(45deg, rgba(246, 243, 243, 0.8) 0%, rgba(255,255,255,0.8) 40%, rgba(255,255,255,0.2) 60%, rgba(255,255,255,0.2) 100%);
-  background-size: 200%;
-  animation: shine 1s forwards;
-}
-
 .card {
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.5s ease-out;
   padding: 3em;
   display: grid;
   grid-template-rows: (4, 1fr);
   justify-items: center;
   align-items: center;
-  box-shadow: 0 0 5px rgba(0,0,0,0.2);
-  transition: box-shadow 0.3s ease-in-out;
-  animation-name: flip-in;
-  animation-duration: 1s;
-  animation-delay: 1s;
-  animation-fill-mode: forwards;
-  animation-timing-function: ease-in-out;
   transform: translateZ(0);
   margin: 1%;
-  
- 
 }
+
 .card:hover {
   transform: rotateX(calc(0deg + ((100vh - var(--mouse-y)) * 0.1))) rotateY(calc(0deg + ((100vw - var(--mouse-x)) * 0.1)));
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  background-image: linear-gradient(45deg, rgba(246, 243, 243, 0.3) 0%, rgba(255,255,255,0.3) 40%, rgba(255,255,255,0.1) 60%, rgba(255,255,255,0.1) 100%);
-  background-size: 200%;
-  animation: shine 1s forwards;
+  animation-name: flip;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-in-out;
   box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #00e6e6, 0 0 70px #00e6e6, 0 0 80px #00e6e6, 0 0 100px #00e6e6, 0 0 150px #00e6e6;
-
 }
 
-.card::before {
+.card:hover::before {
   /* Add the shiny glide styles here */
   content: '';
   position: absolute;
@@ -279,17 +261,6 @@ nav a:hover {
   opacity: 1;
   animation: shiny-glide 1s linear infinite;
 }
-.card:hover::before {
-  opacity: 1;
-}
-pokemon-card:hover .shine {
-  display: block;
-  animation: shine 1s forwards;
-}
-.card:hover img {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
 
 @keyframes shiny-glide {
   0% {
@@ -301,22 +272,15 @@ pokemon-card:hover .shine {
     opacity: 0;
   }
 }
-@keyframes glow {
-  from {
-    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #00e6e6, 0 0 50px #00e6e6, 0 0 70px #00e6e6;
-  }
-  
-  to {
-    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #00e6e6, 0 0 50px #00e6e6, 0 0 100px #00e6e6;
-  }
-}  
+
 @keyframes shine {
   to {
     background-position: 200%;
   }
 }
+
 /* Define the keyframes for the animation */
-@keyframes flip-in {
+@keyframes flip {
   0% {
     transform: rotateY(180deg);
   }
@@ -324,6 +288,20 @@ pokemon-card:hover .shine {
     transform: rotateY(0deg);
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .play-button {
   width: 200px;
@@ -419,15 +397,32 @@ button {
   height: 100%;
   padding: 10px 20px;
   margin-top: 10%; 
-  transition: all 0.2s ease-in-out;
+  animation: pulse 1s infinite;
   font-family: 'Press Start 2P', sans-serif;
 }
+
 button:hover {
-  background-color: red;
+  background-color: rgb(9, 4, 4);
   border: 2px solid white;
-  color: rgb(255, 0, 0);
+  color: rgb(10, 7, 7);
   transform: rotateY(360deg) scale(1.1);
+  box-shadow: 0 0 10px rgb(0, 0, 0), 0 0 20px red, 0 0 30px red, 0 0 40px red, 0 0 70px red, 0 0 80px red,
 }
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+
+
 @media (max-width: 768px) {
   button {
     margin-top: 35%;
