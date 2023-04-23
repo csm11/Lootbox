@@ -24,7 +24,6 @@ return (
 )
 }
 
-
 function WrappedApp() {
   return (
     <HashRouter>

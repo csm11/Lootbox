@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'; // import BrowserRouter for ro
 import Instructions from './pages/Instructions';
 import App from './App';
 import Game from './pages/Game';
+import '@testing-library/jest-dom';
 
 
 describe('Game', () => {

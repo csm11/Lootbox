@@ -22,25 +22,22 @@ function Game() {
   const [points, setPoints] = useState(50); // Initialize points to 50
   const URL_BASE_SET = "https://api.pokemontcg.io/v2/cards/base1-"; //base pack
   const URL_SILVER_TEMPEST = "https://api.pokemontcg.io/v2/cards/swsh12-"; //silver tempest pack
-  const apiKey = "63959bc3-d85e-4fe2-9d14-61d1d9e57242";
+  const apiKey = "40e67166-515e-48e6-859b-25c7b4348113";
 
   useEffect(() => {
     if (timeLeft === 1) {
-      return; // stop updating the points when timer reaches 0
+      return; // stop updating the points when timer ends
     }})
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setTimeLeft(timeLeft => {
         if (timeLeft === 0) {
-          clearInterval(intervalId); // stop the interval
-          // additional actions if needed
-          
+          clearInterval(intervalId); // stop the interval     
         }
         return timeLeft -1;
       });
     }, 1000);
-  
     return () => clearInterval(intervalId);
   }, []);
 
@@ -64,12 +61,12 @@ function Game() {
     return cardPrice;
   };
 const fetchPokemon = (packUrl) => {
-  const availableCards = Array.from(Array(102).keys())
-  .filter(cardNumber => cardNumber !== 31 && cardNumber !== 7 && cardNumber !== 0 && cardNumber !== 81 && cardNumber !== 19 && cardNumber !== 63 && cardNumber !== 92);
+  const availableCards = Array.from(Array(102).keys())  
+  .filter(cardNumber => cardNumber !== 31 && cardNumber !== 7 && cardNumber !== 0 && cardNumber !== 81 && cardNumber !== 54);
 
 
   const pokemon = [];
-  for (let i = 0; i < 11; i++) {
+  for (let i = 0; i < 10; i++) {
     const randomIndex = Math.floor(Math.random() * availableCards.length);
     const cardNumber = availableCards[randomIndex];
     availableCards.splice(randomIndex, 1);
@@ -78,6 +75,8 @@ const fetchPokemon = (packUrl) => {
       .then((res) => res.json())
       .then((data) => {
         pokemon.push(data.data);
+        console.log(data.data); // log the entire card data
+
         if (pokemon.length === 10) {
           setPokemonCards(pokemon);
           setShowButton(true);
@@ -127,7 +126,6 @@ const shakeAnimation = "shake 0.5s ease-in-out";
 
 
 
-//use effect creates an interval may delete
   useEffect(() => {
     const intervalId = setInterval(() => {
       setPoints(points => points + 0);
@@ -147,6 +145,7 @@ const shakeAnimation = "shake 0.5s ease-in-out";
   }, [timeLeft, navigate]);
   
   return ( 
+    
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: '2%' }}>
       <div style={{ position: 'absolute', top: '15%', textAlign: 'center' }}>
         <h1 style={{ fontSize: '100%' }}>Time left: {timeLeft} seconds</h1>

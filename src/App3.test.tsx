@@ -6,6 +6,8 @@ import Instructions from './pages/Instructions';
 import App from './App';
 import Game from './pages/Game';
 import Survey from './pages/Survey';
+import '@testing-library/jest-dom';
+
 
 describe('Survey', () => {
   it('renders the survey page', () => {

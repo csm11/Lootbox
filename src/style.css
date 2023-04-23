@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
 
-
 *{
 
     box-sizing: border-box;
@@ -107,6 +106,7 @@ nav a:hover {
         margin-left: 0; 
         text-align: center; 
         font-size: 1rem; } } 
+        
 /* For screens larger than or equal to 768px */ 
 @media (min-width: 768px) { 
   .nav { 
@@ -272,8 +272,6 @@ nav a:hover {
   }
 }
 
-
-/* Define the keyframes for the animation */
 @keyframes flip {
   0% {
     transform: rotateY(180deg);

@@ -1,10 +1,13 @@
 import { describe, it } from 'vitest';
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom'; // import BrowserRouter for routing
+import { BrowserRouter } from 'react-router-dom';
 import Instructions from './pages/Instructions';
 import App from './App';
 import Game from './pages/Game';
+import '@testing-library/jest-dom';
+
+
 
 describe('Instructions', () => {
   it('renders all the details', () => {
@@ -34,5 +37,8 @@ describe('Instructions', () => {
     expect(playButton).toBeInTheDocument();
   });
 
-  
+ 
+
+
 });
+
